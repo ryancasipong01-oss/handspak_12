@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h1>
+    Admin Dashboard
+</h1>
+
+<div class="features">
+
+    <div class="card">
+
+        <h2>
+            👥 Users
+        </h2>
+
+        <h1>
+            {{ users }}
+        </h1>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            🤟 Gestures
+        </h2>
+
+        <h1>
+            {{ gestures }}
+        </h1>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            🔎 Searches
+        </h2>
+
+        <h1>
+            {{ searches }}
+        </h1>
+
+    </div>
+
+</div>
+
+
+<br>
+
+
+<a
+    class="button"
+    href="{{ url_for('admin_users') }}"
+>
+    Manage Users
+</a>
+
+
+<a
+    class="button"
+    href="{{ url_for('admin_gestures') }}"
+>
+    Manage Gestures
+</a>
+
+{% endblock %}

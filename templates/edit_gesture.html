@@ -1,0 +1,110 @@
+```html
+{% extends "base.html" %}
+
+{% block title %}
+Edit Gesture
+{% endblock %}
+
+{% block content %}
+
+<h1>
+    Edit Gesture
+</h1>
+
+
+<div class="form-container">
+
+    <form
+        method="POST"
+        action="{{ url_for(
+            'edit_gesture',
+            gesture_id=gesture['id']
+        ) }}"
+    >
+
+        <label>
+            Gesture Name
+        </label>
+
+        <input
+            type="text"
+            name="name"
+            value="{{ gesture['name'] }}"
+            required
+        >
+
+
+        <label>
+            Category
+        </label>
+
+        <select name="category">
+
+            <option
+                value="letter"
+                {% if gesture['category'] == 'letter' %}
+                    selected
+                {% endif %}
+            >
+                Letter
+            </option>
+
+            <option
+                value="number"
+                {% if gesture['category'] == 'number' %}
+                    selected
+                {% endif %}
+            >
+                Number
+            </option>
+
+            <option
+                value="word"
+                {% if gesture['category'] == 'word' %}
+                    selected
+                {% endif %}
+            >
+                Word
+            </option>
+
+        </select>
+
+
+        <label>
+            Image Filename
+        </label>
+
+        <input
+            type="text"
+            name="image"
+            value="{{ gesture['image'] }}"
+            required
+        >
+
+
+        <label>
+            Description
+        </label>
+
+        <textarea
+            name="description"
+        >{{ gesture['description'] }}</textarea>
+
+
+        <button type="submit">
+            Update Gesture
+        </button>
+
+
+        <a href="{{ url_for('admin_gestures') }}">
+            <button type="button">
+                Cancel
+            </button>
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}
+```

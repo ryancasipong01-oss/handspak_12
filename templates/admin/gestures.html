@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Gestures
+{% endblock %}
+
+{% block content %}
+
+<h1>
+    Manage Sign Language Dataset
+</h1>
+
+
+<div class="form-container">
+
+    <h2>
+        Add Gesture
+    </h2>
+
+    <form
+        method="POST"
+        action="{{ url_for('add_gesture') }}"
+    >
+
+        <label>Gesture Name</label>
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Example: HELLO"
+            required
+        >
+
+
+        <label>Category</label>
+
+        <select name="category">
+
+            <option value="letter">
+                Letter
+            </option>
+
+            <option value="number">
+                Number
+            </option>
+
+            <option value="word">
+                Word
+            </option>
+
+        </select>
+
+
+        <label>Image Filename</label>
+
+        <input
+            type="text"
+            name="image"
+            placeholder="hello.jpg"
+            required
+        >
+
+        <button type="submit">
+            Add Gesture
+        </button>
+
+    </form>
+
+</div>
+
+
+<br>
+
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Action</th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody>
+
+        {% for gesture in gestures %}
+
+        <tr>
+
+            <td>
+                {{ gesture["id"] }}
+            </td>
+
+            <td>
+                {{ gesture["name"] }}
+            </td>
+
+            <td>
+                {{ gesture["category"] }}
+            </td>
+
+            <td>
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='images/' + gesture['image']
+                    ) }}"
+                    width="80"
+                    alt="{{ gesture['name'] }}"
+                >
+
+            </td>
+
+
+            <td>
+
+                <!-- EDIT BUTTON -->
+                <a
+                    href="{{ url_for(
+                        'edit_gesture',
+                        gesture_id=gesture['id']
+                    ) }}"
+                >
+                    <button type="button">
+                        Edit
+                    </button>
+                </a>
+
+
+                <!-- DELETE BUTTON -->
+                <form
+                    method="POST"
+                    action="{{ url_for(
+                        'delete_gesture',
+                        gesture_id=gesture['id']
+                    ) }}"
+                    style="display:inline;"
+                >
+
+                    <button
+                        type="submit"
+                        onclick="
+                            return confirm(
+                                'Delete this gesture?'
+                            );
+                        "
+                    >
+                        Delete
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

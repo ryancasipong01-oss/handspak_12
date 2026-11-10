@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}
+Search History
+{% endblock %}
+
+{% block content %}
+
+<h1>
+    Search History
+</h1>
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>
+                Search
+            </th>
+
+            <th>
+                Gesture
+            </th>
+
+            <th>
+                Date
+            </th>
+
+            <th>
+                Action
+            </th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody>
+
+        {% for item in histories %}
+
+        <tr>
+
+            <td>
+                {{ item["search_text"] }}
+            </td>
+
+            <td>
+                {{ item["gesture_name"] or "Not found" }}
+            </td>
+
+            <td>
+                {{ item["searched_at"] }}
+            </td>
+
+            <td>
+
+                <form
+                    method="POST"
+                    action="{{ url_for(
+                        'delete_history',
+                        history_id=item['id']
+                    ) }}"
+                >
+
+                    <button
+                        type="submit"
+                        onclick="
+                            return confirm(
+                                'Delete this history?'
+                            );
+                        "
+                    >
+                        Delete
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        {% else %}
+
+        <tr>
+
+            <td colspan="4">
+                No search history.
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

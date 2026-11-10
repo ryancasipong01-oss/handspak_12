@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}
+Gesture Translator
+{% endblock %}
+
+{% block content %}
+
+<div class="translator">
+
+    <h1>
+        🤟 Gesture Translator
+    </h1>
+
+    <p>
+        Type a letter, number, or word.
+        The gesture will appear automatically.
+    </p>
+
+
+    <div class="translator-input">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Type A, B, C, HI, HELLO..."
+            autocomplete="off"
+        >
+
+        <button
+            type="button"
+            onclick="clearTranslator()"
+        >
+            Clear
+        </button>
+
+    </div>
+
+
+    <div
+        id="suggestions"
+        class="suggestions"
+    ></div>
+
+
+    <div
+        id="gestureResult"
+        class="gesture-result"
+    >
+
+        <p>
+            Start typing to see a gesture.
+        </p>
+
+    </div>
+
+
+    <div
+        id="letterResults"
+        class="letter-results"
+    ></div>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='js/translator.js') }}"
+></script>
+
+{% endblock %}

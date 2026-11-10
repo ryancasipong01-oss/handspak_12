@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+HandSpeak Web
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <h1>
+        HandSpeak Web
+    </h1>
+
+    <h2>
+        Sign Language Recognition and Translation System
+    </h2>
+
+    <p>
+        Type a letter, number, or word and see the
+        corresponding sign language gesture.
+    </p>
+
+    <a
+        class="button"
+        href="{{ url_for('translator') }}"
+    >
+        Start Translator
+    </a>
+
+</section>
+
+{% endblock %}

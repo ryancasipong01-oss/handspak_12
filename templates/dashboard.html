@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h1>
+    Welcome, {{ username }}!
+</h1>
+
+<div class="dashboard-grid">
+
+    <a
+        class="dashboard-card"
+        href="{{ url_for('translator') }}"
+    >
+
+        <h2>
+            🤟 Translator
+        </h2>
+
+        <p>
+            Type text and display sign language gestures.
+        </p>
+
+    </a>
+
+
+    <a
+        class="dashboard-card"
+        href="{{ url_for('history') }}"
+    >
+
+        <h2>
+            🔎 Search History
+        </h2>
+
+        <p>
+            View your previous searches.
+        </p>
+
+    </a>
+
+</div>
+
+{% endblock %}
